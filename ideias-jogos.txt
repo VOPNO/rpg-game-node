@@ -1,0 +1,42 @@
+Seu jogo de RPG de terminal já tem uma estrutura interessante! Aqui estão algumas ideias para mecânicas que você pode adicionar para tornar o jogo mais envolvente:
+
+Sistema de Combate:
+
+Introduza batalhas com criaturas na ilha.
+Permita que o jogador use os poderes dos NPCs durante as batalhas.
+A eficácia dos ataques pode depender dos atributos de poder dos NPCs e do jogador.
+Sistema de Inventário e Suprimentos:
+
+Crie um sistema de inventário para armazenar itens e suprimentos coletados na jornada.
+Suprimentos podem influenciar diretamente as chances de sucesso em certas situações.
+Missões Secundárias:
+
+Adicione missões secundárias que os NPCs ou habitantes da ilha possam oferecer ao jogador.
+Compleção de missões secundárias pode conceder recompensas valiosas.
+Tomada de Decisões:
+
+Introduza escolhas que o jogador deve fazer durante a história, afetando o desenvolvimento do enredo.
+Decisões podem influenciar a relação com os NPCs e o desfecho do jogo.
+Eventos Aleatórios:
+
+Adicione eventos aleatórios que podem ocorrer durante a exploração da ilha.
+Esses eventos podem ser positivos ou negativos, dependendo das escolhas do jogador.
+Aprimoramento de Habilidades:
+
+Permita que o jogador aprimore suas próprias habilidades à medida que avança no jogo.
+Pode ser relacionado a habilidades de combate, sobrevivência ou interação com NPCs.
+Sistema de Clima e Ambiente:
+
+Introduza um sistema de clima que afete a jogabilidade e a exploração.
+Certos lugares na ilha podem ter condições especiais dependendo do clima.
+Labirintos e Quebra-Cabeças:
+
+Adicione áreas na ilha com labirintos desafiadores ou quebra-cabeças que requerem raciocínio lógico para serem resolvidos.
+Modo Furtivo:
+
+Implemente um modo furtivo que permite ao jogador evitar inimigos ou realizar ações secretas.
+Progressão do Personagem:
+
+Crie um sistema de progressão onde o jogador ganha experiência e pode subir de nível ao longo do jogo.
+O aumento de nível pode desbloquear novas habilidades ou melhorar atributos.
+Espero que essas ideias inspirem novos elementos interessantes para o seu jogo!
