@@ -30,6 +30,17 @@ class NPC {
     };
 };
 
+class food {
+    constructor(nomeAlimento, recuperação, pesoInventario){
+        this.nomeAlimento = nomeAlimento;
+        this.recuperacao = recuperação;
+        this.pesoInventario = pesoInventario;
+    };
+    descpFood () {
+        return `${this.nomeAlimento}\nRecuperação de vida: ${this.recuperacao}\nPeso no inventario: ${this.pesoInventario}`
+    }
+}
+
 //Número randomico
 function numberRandom () {
     return Math.floor(Math.random() * 100) + 1;
@@ -51,13 +62,28 @@ function perguntar(pergunta){
     })
 }
 
+let playe = {
+    nome: user,
+    saude: 100,
+    armadura: 10,
+    inv: {
+        poçõesCura: 0,
+        alimentos: [{
+            nomeAlimento: 'Sopa',
+            recuperaçãoVida: 10,
+            pesoInv: 2
+        }]
+    }
+}
 //Função para abrir o inventario
-function inventario() {
+async function inventario() {
 
 }
 
 let rd = numberRandom();
 
+
+//Criação de entidades / NPCs / Objetos
 const npc1 = new NPC('Jimmy', 'Reptiliano Escalador', 'Escalar qualquer superficie', numberRandom());
 
 const npc2 = new NPC('Dor', 'Minotauro Taberneiro','Conhecer todos os caminhos', numberRandom() );
@@ -71,6 +97,13 @@ const npc5 = new NPC('Esco', 'Bárbaro Guerreiro', 'Força Bruta', numberRandom(
 const npc6 = new NPC('Morfis', 'Feiticeiro', 'Magias antigas', numberRandom());
 
 const npc7 = new NPC('Brad', 'Guia', 'ajudar com suas duvidas', numberRandom());
+
+const food1 = new food('Maça', 5, 1);
+const food2 = new food('Banana', 5, 1);
+const food3 = new food('Sopa de coelho', 15, 2);
+const food4 = new food('Fatia bolo', 15, 2);
+const food5 = new food('Bolo', 20, 5);
+const food6 = new food()
 
 /*const npc7 = new NPC('', '', '', numberRandom());*/
 
