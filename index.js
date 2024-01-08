@@ -91,7 +91,6 @@ async function userName(){
 }
 
 let stateDuvid = false;
-let continuarGame = true;
 
 async function startGame() {
     await esperar(900)
@@ -120,20 +119,23 @@ function toCloseGame(){
 async function duvida(){
     while (stateDuvid) {    
         await esperar(200);
-        const duvidMenu = await perguntar(`[1]- Regras\n[2]- Objetivo\n[3]- Ajuda\n[4]- Comandos\n[5]- Créditos\n[6]- Encerrar o jogo\n[0]- Sair`);
+        let duvidMenu = await perguntar(`[1]- Regras\n[2]- Objetivo\n[3]- Ajuda\n[4]- Comandos\n[5]- Créditos\n[6]- Encerrar o jogo\n[0]- Sair`);
 
         switch (duvidMenu){
             case '1':
-                regras();
+                await regras();
                 break;
             case '2':
-                obj();
+                await obj();
                 break;
             case '3':
-                help();
+                await help();
                 break;
             case '4':
-                cmd();
+                await cmd();
+                break;
+            case '5':
+                await credito()
                 break;
             case '6':
                 toCloseGame();
@@ -151,24 +153,28 @@ async function duvida(){
 
 async function regras(){
     await esperar(1000);
-    console.log('\n1- Não escreva nada além do esperado\n2- Os valores randomicos não podem ser pré-definidos\n3- Não saia  do personagem')
+    console.log('\n1- Não escreva nada além do esperado\n2- Os valores randomicos não podem ser pré-definidos\n3- Não saia  do personagem\n')
     await esperar(3000)
 }
 
-function obj(){
-
+async function obj(){
+    await esperar(1000);
+    console.log(`\nOs objetivos são:\n1- Superar todos os objetivos\n2- Encontrar o Tesouso escondido\n`)
 }
 
-function help(){
-
+async function help(){
+    await esperar(1000);
+    console.log('\nAlgum bug ou problema no jogo? Mande uma mensagem para o dc: @vopno\n')
 }
 
-function credito(){
-
+async function credito(){
+    await esperar(1000);
+    console.log('\nDeveloper by @vopno\n')
 }
 
-function cmd(){
-
+async function cmd(){
+    await esperar(1000);
+    console.log('\nEm desenvolvimento...\n')
 }
 
 userName()
