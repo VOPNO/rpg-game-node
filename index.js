@@ -4,42 +4,20 @@ const { userInfo } = require('os');
 const { resolve } = require('path');
 const { exit } = require('process');
 const readline = require('readline');
+const NPC = require('./modules/npc');
+const descriptItem = require('./modules/descriptItem');
 
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
 
-const ilha = [
+const ilhas = [
     ['Praia','Taberna', 'Floresta','Floresta de Cogumelos', 'Riacho', 'Montanha', 'Vulcão', 'Caverna', 'Tesouro'],
     ['Praia', 'Riacho','Taberna', 'Montanha', 'Caverna', 'Vulcão','Floresta de Cogumelos', 'Floresta', 'Tesouro'],
     ['Praia', 'Tesouro', 'Caverna','Taberna', 'Floresta','Floresta de Cogumelos', 'Montanha', 'Riacho', 'Vulcão'],
     ['Praia','Floresta de Cogumelos', 'Montanha', 'Vulcão', 'Floresta','Taberna', 'Caverna', 'Riacho', 'Tesouro']
 ];
-
-class NPC {
-    constructor(nome, papel, habilidade, poder, suprimentos) {
-        this.nome = nome;
-        this.papel = papel;
-        this.habilidade = habilidade;
-        this.poder = poder;
-        this.suprimentos = suprimentos;
-    };
-    saudacao() {
-        console.log(`\nOlá, sou ${this.nome}, o ${this.papel}. Minha habilidade especial é ${this.habilidade}. Meu poder é de ${this.poder}.`);
-    };
-};
-
-class descriptItem {
-    constructor(nomeAlimento, recuperação, pesoInventario){
-        this.nomeAlimento = nomeAlimento;
-        this.recuperacao = recuperação;
-        this.pesoInventario = pesoInventario;
-    };
-    descpFood () {
-        return `${this.nomeAlimento}\nRecuperação de vida: ${this.recuperacao}\nPeso no inventario: ${this.pesoInventario}`
-    }
-}
 
 let user;
 //Número randomico
@@ -68,7 +46,7 @@ let playe = {
     saude: 100,
     armadura: 10,
     inv: {
-        poçõesCura: 0
+        pocoesCura: 0
     }
 }
 //Função para abrir o inventario
@@ -81,17 +59,11 @@ let rd = numberRandom();
 
 //Criação de entidades / NPCs / Objetos
 const npc1 = new NPC('Jimmy', 'Reptiliano Escalador', 'Escalar qualquer superficie', numberRandom());
-
 const npc2 = new NPC('Dor', 'Minotauro Taberneiro','Conhecer todos os caminhos', numberRandom() );
-
 const npc3 = new NPC('Gorrooth', 'Anão Ferreiro', 'Forjar qualquer ferramenta', numberRandom());
-
 const npc4 = new NPC('Rilo', 'Elfo Arqueiro','Flechas magicas' , numberRandom());
-
 const npc5 = new NPC('Esco', 'Bárbaro Guerreiro', 'Força Bruta', numberRandom());
-
 const npc6 = new NPC('Morfis', 'Feiticeiro', 'Magias antigas', numberRandom());
-
 const npc7 = new NPC('Brad', 'Guia', 'ajudar com suas duvidas', numberRandom());
 
 /*const npc7 = new NPC('', '', '', numberRandom());*/
@@ -119,7 +91,7 @@ async function userName(){
     console.log(`\nSeja bem-vindo a Ilha ${user}!`);
     
     const continued = await perguntar(`${user}, você deseja iniciar o jogo? [s/n]`);
-    if ( continued == 's' || continued == 'S'){
+    if ( continued.toLowerCase() == 's'){
         startGame();
     } else {
         toCloseGame();
