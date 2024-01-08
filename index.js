@@ -30,7 +30,7 @@ class NPC {
     };
 };
 
-class food {
+class descriptItem {
     constructor(nomeAlimento, recuperação, pesoInventario){
         this.nomeAlimento = nomeAlimento;
         this.recuperacao = recuperação;
@@ -41,6 +41,7 @@ class food {
     }
 }
 
+let user;
 //Número randomico
 function numberRandom () {
     return Math.floor(Math.random() * 100) + 1;
@@ -67,12 +68,7 @@ let playe = {
     saude: 100,
     armadura: 10,
     inv: {
-        poçõesCura: 0,
-        alimentos: [{
-            nomeAlimento: 'Sopa',
-            recuperaçãoVida: 10,
-            pesoInv: 2
-        }]
+        poçõesCura: 0
     }
 }
 //Função para abrir o inventario
@@ -98,16 +94,23 @@ const npc6 = new NPC('Morfis', 'Feiticeiro', 'Magias antigas', numberRandom());
 
 const npc7 = new NPC('Brad', 'Guia', 'ajudar com suas duvidas', numberRandom());
 
-const food1 = new food('Maça', 5, 1);
-const food2 = new food('Banana', 5, 1);
-const food3 = new food('Sopa de coelho', 15, 2);
-const food4 = new food('Fatia bolo', 15, 2);
-const food5 = new food('Bolo', 20, 5);
-const food6 = new food()
-
 /*const npc7 = new NPC('', '', '', numberRandom());*/
 
-let user;
+//Comidas
+const food1 = new descriptItem('Maça', 5, 1);
+const food2 = new descriptItem('Banana', 5, 1);
+const food3 = new descriptItem('Sopa de coelho', 15, 2);
+const food4 = new descriptItem('Fatia bolo', 15, 2);
+const food5 = new descriptItem('Bolo', 20, 5);
+const food6 = new descriptItem('Porco Assado', 30, 10)
+
+/*const food7 = new descriptItem('', 0, 0) */
+
+//Poções
+const pocao1 = new descriptItem('Cura Simples', 30, 10);
+const pocao2 = new descriptItem('Cura Avançada', 60, 25);
+const pocao3 = new descriptItem('Cura master', 95, 40);
+const pocao4 = new descriptItem('');
 
 async function userName(){
     const userNick = await perguntar(`\nQual o seu nome? `);
