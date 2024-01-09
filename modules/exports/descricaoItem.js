@@ -8,3 +8,5 @@ class descriptItem {
         return `${this.nomeAlimento}\nRecuperação de vida: ${this.recuperacao}\nPeso no inventario: ${this.pesoInventario}`;
     };
 };
+
+module.exports = descriptItem;
