@@ -45,10 +45,10 @@ let player = {
     nome: user,
     saude: 100,
     armadura: 10,
-    inv: {
-        pocoesCura: 0
-    }
+    tipo: '',
+    level: 0
 };
+
 //Função para abrir o inve;ntario
 async function inventario() {
 
@@ -68,7 +68,7 @@ const npc7 = new NPC('Brad', 'Guia', 'ajudar com suas duvidas', numberRandom());
 /*const npc7 = new NPC('', '', '', numberRandom());*/
 
 //Comidas
-const food1 = new descriptItem('Maça', 5, 1);
+const food = new descriptItem('Maça', 5, 1);
 const food2 = new descriptItem('Banana', 5, 1);
 const food3 = new descriptItem('Sopa de coelho', 15, 2);
 const food4 = new descriptItem('Fatia bolo', 15, 2);
@@ -203,38 +203,114 @@ async function escolherMap(){
 };
 
 function falaDoPlayer(fala){
-    console.log(user + '- ' + `${fala}`)
+    console.log('\n' + user + ' - ' + fala)
 }
 
 function falaNPC(npc, fala){
-    console.log(npc.nome + '- ' + fala);
+    console.log(npc.nome + ' - ' + fala + '\n');
 };
 
+function falaNpcDesconhecido(fala){
+    console.log(`??? - ` + fala);
+};
+
+function falaDoJogo (fala) {
+    console.log('Jogo - ' + fala);
+};
 
 async function primeiraParte(){
     await esperar(1000);
-    console.log(`Jogo- Você nasceu na cidade de Porto das Marés. A sua frente você vê um homem, ele tem estatura meio baixa, cabelos castanhos uma grande mochila e olhos bondosos. Você decide ir até ele e comprimenta-lo.\n`);
+    console.log(`\nJogo- Você nasceu na cidade de Porto das Marés. A sua frente você vê um homem, ele tem estatura meio baixa, cabelos castanhos uma grande mochila e olhos bondosos. Você decide ir até ele e comprimenta-lo.\n`);
     await esperar(2000);
     falaDoPlayer('O... Oi, estou meio perdido, não sei como vim parar aqui. Poderia me ajudar? Onde estamos?\n');
     await esperar(1000);
-    falaNPC(npc7, 'Olá, estamos na cidade de Porto das Marés. Você é novo por aqui?\n');
+    falaNpcDesconhecido('Olá, estamos na cidade de Porto das Marés. Você é novo por aqui?\n');
     await esperar(1000);
     falaDoPlayer('Si...sim, eu não lembro ao certo como vim parar aqui. Estou bem atordoado.\n');
     await esperar(1000);
-    falaNPC(npc7, 'Bom você está em Porto das Marés, pode fazer oque quiser. Mas ja avisando, essa Ilha é realmente cheia de misterios ');
-    const decisaoMisterio = await perguntar(`Jogo - Você tem duas opções\n1- Perguntar como se arruma um barco para voltar para a casa\n2- Perguntar sobre os misterios da Ilha\n:`);
-    await esperar(1000);
+    falaNpcDesconhecido('Bom você está em Porto das Marés, pode fazer oque quiser. Mas ja avisando, essa Ilha é realmente cheia de misterios ');
     
-    while (){
-    if( decisaoMisterio == '2'){
-        falaDoPlayer('Mis...Misterios? Quais misterios essa ilha tem?');
-        await esperar(1000);
-        falaNPC(npc7, 'Dizem que existe um Tesouro no final do mapa. Um tesouro capaz de conceder desejos, capaz de fazer qualquer desejo que você quiser.');
-        await esperar(1000)
-        falaDoPlayer('Uau! Aonde eu posso arrumar esse mapa desse tal tesouro?');
-    } else if( decisaoMisterio == '1') {
-        falaDoPlayer('Tô querendo só voltar para minha casa mesmo,')
-    }}
+    await esperar(1000);
+    await pergunta1();
+    await pergunta2();
+
+    async function pergunta1() {
+        let nPergunta1 = true;
+        const decisaoMisterio = await perguntar(`Jogo- Você tem duas opções\n1- Perguntar como se arruma um barco para voltar para a casa\n2- Perguntar sobre os misterios da Ilha`);
+        while (nPergunta1){
+            if( decisaoMisterio == '2'){
+                falaDoPlayer('Mis...Misterios? Quais misterios essa ilha tem?');
+                await esperar(2000);
+                falaNpcDesconhecido('Dizem que existe um Tesouro no final do mapa. Um tesouro capaz de conceder desejos, capaz de fazer qualquer desejo que você quiser.');
+                await esperar(2000);
+                falaDoPlayer('Uau! Aonde eu posso arrumar esse mapa desse tal tesouro?');
+                await esperar(2000);
+                falaNpcDesconhecido(`Bom, o lugar é proximo daqui. Na parte baixa do caís, proximo a ${mapEscolhido[1]}. Dizem que lá não é muito seguro, então tome cuidado.`);
+                await esperar(2000);
+                falaNPC(npc7, `A propósito me chamo Brad. É um prazer conhece-lo!`);
+                await esperar(2000);
+                falaDoPlayer(`E eu me chamo ${user}. É igualmente um prazer.`);
+                await esperar(2000);
+                falaNPC(npc7, `Bom ${user}, se você quiser, eu estou indo para lá também. Se quiser podemos ir juntos`);
+                await esperar(2000);
+                falaDoPlayer('É uma otima ideia.')
+                await esperar(1000);
+                falaDoJogo(`Você partem em direção a parte baixa do caís.`)
+                await esperar(2000); 
+                nPergunta1 = false;
+
+            } else if( decisaoMisterio == '1') {
+                falaDoPlayer('Tô querendo só voltar para minha casa mesmo, sabe aonde eu arrumo algo tipo de barco volta ao continente?');
+                await esperar(2000);
+                falaNpcDesconhecido('Claro, o cais é perto daqui. É só seguir reto aqui proximo a linha do trem que chegara la em breve.');
+                await esperar(2000);
+                pergunta = false;
+            }else {
+                console.log('Comando não achado.');
+                pergunta1();
+                break;
+            };
+        };
+    };
+
+    async function pergunta2 () {
+        let c;
+        falaNPC(npc7, 'Olha, a jornada não vai ser facil por onde quer que você vá. Você não me parece muito forte. Tem alguma habilidade especial? [s/n]');
+        const duvidaClasses = await perguntar('\n:');
+        let nPergunta2 = true;
+        while (nPergunta2){
+            if(duvidaClasses == 's'){
+                falaDoPlayer('Claro, a minha terra de origem é conhecida pelos seus grandes guerreiros.');
+                await esperar(2000)
+                falaNPC(npc7, 'Uau! E que tipo de guerreiro você é?')
+                const tipoGuerreiro = await perguntar('[1]- Guerreiro\n[2]- Espadachim\n[3]- Arqueiro\n[4]- Mago\n:')
+                switch(tipoGuerreiro){
+                    case '1':
+                        player.tipo = 'Guerreiro';
+                        break;
+                    case '2':
+                        player.tipo = 'Espadachim';
+                        break
+                    case '3':
+                        player.tipo = 'Arqueiro';
+                        break;
+                    case '4':
+                        player.tipo = 'Mago';
+                        break;
+                    default:
+                        console.log('[404]Comando não achado.')      
+                }
+            }else if(duvidaClasses == 'n'){
+                player.tipo = null
+                falaDoPlayer('Não, infelizmente não tenho nenhuma habilidade especial.');
+                await esperar(2000);
+                falaNPC(npc7, 'Nossa, então vai ser bem complicado.');
+                await esperar(2000);
+                falaDoPlayer('É, mas não tem problema. Vou dar um jeito.')
+            }
+        }
+
+    }
 };
 
 userName();
